@@ -18,16 +18,29 @@ Good Luck !!!
 
 
 // Define UI Variables  here 
-
-
-
-
-
-
-
+const collection = document.querySelectorAll(".collection-item");
 
 
 // Display the BOM Information on the innerHTML of the elements
 
 
+collection.forEach(function(element, index) {
+    // getting the property names from a tag text and making them camelcase
+    const property = element.firstChild.textContent[0].toLowerCase() + element.firstChild.textContent.slice(1)
+    
+    // a place for the values
+    let answer = element.firstElementChild
 
+
+    if (index <= 4) {
+        answer.innerHTML = location[property]
+    }else if (index <= 9) {
+        answer.innerHTML = navigator[property]
+    }else if (index <= 12) {
+        answer.innerHTML = screen[property]
+    }else{
+        answer.innerHTML = history[property]
+    }
+    
+    
+});
