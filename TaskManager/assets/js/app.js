@@ -60,6 +60,21 @@ function clearAllTasks() {
     }
 }
 
+function filterTasks() {
+    let keyWord = filter.value;
+    let collection_list = document.querySelectorAll('.collection-item')
+    
+
+    collection_list.forEach(element => {
+        
+        if (element.firstChild.textContent.indexOf(keyWord)) {
+            element.style.display = "none";
+        } else {
+            element.style.display = "block";
+        }
+    });
+}
+
 
 
 
