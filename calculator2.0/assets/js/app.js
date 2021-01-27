@@ -44,10 +44,11 @@ function chooseOp(e) {
 
 
     if (e.target.innerHTML != 'CE') {
+        clearAll()
         chosenOp = e.target.innerHTML;
         e.target.style.backgroundColor = 'gray'
 
-        clearAll()
+        
         display.innerHTML = `${e.target.innerHTML} selected`;
 
     }
@@ -59,9 +60,10 @@ function chooseOp(e) {
 
 function clearAll() {
     inputView.value = '';
-    numbers = []
+    numbers = [];
+    chosenOp = '';
     preview.innerHTML = 'preview';
-    display.innerHTML = 'Choose an op'
+    display.innerHTML = 'Choose an op';
 
 }
 
@@ -83,12 +85,14 @@ function addNumTolist() {
                 calculate()
             }
         }
-    
+    if (numbers.length != 0) {
         preview.innerHTML = '';
         numbers.forEach(num => {
     
             preview.innerHTML += num + " | "
         });
+    }
+        
     
     }
 
@@ -96,14 +100,18 @@ function addNumTolist() {
 }
 
 function calculate() {
+    let num1 = numbers[0]
+    let num2 = numbers[1]
     if (chosenOp == '+') {
         display.innerHTML = add(numbers)
-    } else if (chooseOp == '*'){
+    } else if (chosenOp == '*'){
         display.innerHTML = multiply(numbers)
     }else if (chosenOp == '-') {
-        display.innerHTML = subtract(numbers[0], numbers[1])
+        clearAll()
+        display.innerHTML = subtract(num1,num2)
     }else if (chosenOp == '/') {
-        display.innerHTML = divide(numbers[0], numbers[1])
+        clearAll()
+        display.innerHTML = divide(num1, num2)
     }
     else{
         display.innerHTML = 'Choose an op'
