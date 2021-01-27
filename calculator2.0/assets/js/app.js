@@ -1,14 +1,72 @@
-let numberInput = document.querySelector('#number')
+// declearing variable
+const inputs = document.querySelectorAll('#pad button');
+const inputView = document.querySelector('#inputView');
+const next = document.querySelector('#next');
+const display = document.querySelector('#display')
+let chosenOp = '';
+const ops = document.querySelectorAll('#ops_pad button');
+let numbers = []
 
-let display = document.querySelector('#answer')
+// adding eventlisteners
+inputs.forEach(btn => {
+    btn.addEventListener('click', write);
+});
 
-let operator = document.getElementsByName('operator')
-let size = document.querySelector('#size')
-size.style.display = 'none';
+ops.forEach(op => {
+    op.addEventListener('click', chooseOp);
+});
+
+next.addEventListener('click', addNumTolist);
 
 
-if (operator == '+' | operator == '*') {
-    size.style.display = 'block';
-} else {
-    size.style.display = 'none'
+
+
+
+// functions
+function write(e) {
+    if (e.target.innerHTML != '=') {
+        inputView.value +=  e.target.innerHTML;
+        display.innerHTML += e.target.innerHTML
+    }
+    else{
+        calculate();
+    }
+    
+}
+
+
+function chooseOp(e) {
+    if (e.target.innerHTML != 'CE') {
+        chosenOp = e.target.innerHTML;
+    }
+    else{
+        clearAll()
+    }
+}
+
+
+function clearAll() {
+    numbers = []
+
+}
+
+function addNumTolist() {
+    if (chosenOp == '+' | chosenOp == '*') {
+        numbers.push(inputView.value);
+        inputView.value = '';
+    }
+    else{
+        if (numbers.length < 2) {
+            numbers.push(inputView.value);
+            inputView.value = '';
+        }
+        else{
+            inputView.disabled = 'disabled';
+        }
+    }
+   
+}
+
+function calculate() {
+    // calculate
 }
