@@ -1,0 +1,49 @@
+body {
+    background: linear-gradient(to bottom left, #3366ff 0%, #ff66ff 100%);
+}
+
+.card {
+    width: 380px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    background-color: whitesmoke
+}
+
+#screen {
+    background-color: white;
+    padding: 30px;
+}
+
+
+
+#pad button {
+    width: 70px;
+    height: 60px;
+    font-size: 20px;
+    font-weight: bolder;
+    color: midnightblue;
+    margin: 5px;
+
+}
+
+#pad button:hover {
+    background-color: turquoise;
+}
+
+#ops_pad button {
+    width: 90px;
+    font-size: 20px;
+    margin-top: 10px;
+    color: white;
+    font-weight: bolder;
+    background-color: orange;
+}
+
+#equals{
+    color:whitesmoke!important;
+}
+
+#cancel {
+    background-color: tomato !important;
+}
