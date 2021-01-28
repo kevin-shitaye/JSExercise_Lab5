@@ -4,6 +4,7 @@ const filter = document.querySelector('#filter'); //the task filter text field
 const taskList = document.querySelector('.collection');  //The ul
 const clearBtn = document.querySelector('.clear-tasks'); //the all task clear button
 const reloadIcon = document.querySelector('.fa');
+const sortSelect = document.querySelector('#sort')
 
 
 
@@ -14,6 +15,7 @@ clearBtn.addEventListener('click', clearAllTasks)
 filter.addEventListener('keyup', filterTasks )
 taskList.addEventListener('click', removeTask);
 reloadIcon.addEventListener('click', reloadPage)
+sortSelect.addEventListener('change', sortTasks)
 
 
 
@@ -51,6 +53,8 @@ function addNewTask(e) {
     // adding date object for sorting
     const date = new Date().getTime();
     li.dataset.date = date
+
+    sortTasks()
 
 }
 
@@ -91,3 +95,29 @@ function reloadPage() {
     location.reload()
 }
 
+
+function sortTasks() {
+    list_of_dates = []
+    let collection_list = document.querySelectorAll('.collection-item')
+    collection_list.forEach(task => {
+        list_of_dates.push(task.dataset.date)
+    });
+    
+    list_of_dates.sort()
+
+    if (sortSelect.value == '2') {
+        list_of_dates.reverse()
+    }
+
+    clearAllTasks()
+    for (let i = 0; i < list_of_dates.length; i++) {
+        for (let j = 0; j < collection_list.length; j++) {
+            if (collection_list[j].dataset.date == list_of_dates[i]) {
+                taskList.appendChild(collection_list[j])
+            }
+            
+        }
+    
+    }
+
+}
