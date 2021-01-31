@@ -31,6 +31,15 @@ body {
     background-color: turquoise;
 }
 
+#additional_func button {
+    width: 70px;
+    font-size: 15px;
+    margin-top: 10px;
+    color: white;
+    font-weight: bolder;
+    background-color: orange;
+}
+
 #ops_pad button {
     width: 90px;
     font-size: 20px;

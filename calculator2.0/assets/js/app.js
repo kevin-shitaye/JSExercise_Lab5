@@ -6,6 +6,7 @@ const display = document.querySelector('#display');
 const preview = document.querySelector('#preview');
 let chosenOp = '';
 const ops = document.querySelectorAll('#ops_pad button');
+const additional_func = document.querySelectorAll('#additional_func button')
 let numbers = []
 
 // adding eventlisteners
@@ -14,6 +15,9 @@ inputs.forEach(btn => {
 });
 
 ops.forEach(op => {
+    op.addEventListener('click', chooseOp);
+});
+additional_func.forEach(op => {
     op.addEventListener('click', chooseOp);
 });
 
@@ -25,9 +29,12 @@ next.addEventListener('click', addNumTolist);
 
 // functions
 function write(e) {
-    if (e.target.innerHTML != '=') {
+    if (!['=', '^2', '|x|', 'root'].includes(e.target.innerHTML)) {
         inputView.value +=  e.target.innerHTML;
         
+    }
+    else if (e.target.innerHTML != '=') {
+        chosenOp = inputView.value;
     }
     else{
         calculate();
@@ -41,7 +48,9 @@ function chooseOp(e) {
     ops.forEach(op => {
         op.style.backgroundColor = "orange"
     });
-
+    additional_func.forEach(op => {
+        op.style.backgroundColor = "orange"
+    });
 
     if (e.target.innerHTML != 'CE') {
         clearAll()
@@ -113,6 +122,16 @@ function calculate() {
         clearAll()
         display.innerHTML = divide(num1, num2)
     }
+    else if (chosenOp == '^2') {
+        clearAll()
+        display.innerHTML = square(num1)
+    }else if (chosenOp == '|x|') {
+        clearAll()
+        display.innerHTML = absolute(num1)
+    }else if (chosenOp == 'root') {
+        clearAll()
+        display.innerHTML = Math.sqrt(num1)
+    }
     else{
         display.innerHTML = 'Choose an op'
     }
@@ -151,4 +170,17 @@ function multiply(arr) {
     });
     return product;
     
+}
+
+function square(x) {
+    return Number(x) * Number(x)
+}
+
+
+
+function absolute(x) {
+    if (x < 0 ) {
+        return Number(x) * -1
+    }
+    return x 
 }
